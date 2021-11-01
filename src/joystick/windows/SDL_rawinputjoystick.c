@@ -47,7 +47,7 @@
 #ifdef HAVE_XINPUT_H
 #define SDL_JOYSTICK_RAWINPUT_XINPUT
 #endif
-#ifdef SDL_WINDOWS10_SDK
+#ifdef SDL_JOYSTICK_WGI
 #define SDL_JOYSTICK_RAWINPUT_WGI
 #endif
 
@@ -1260,7 +1260,7 @@ RAWINPUT_JoystickRumbleTriggers(SDL_Joystick *joystick, Uint16 left_rumble, Uint
 {
 #if defined(SDL_JOYSTICK_RAWINPUT_WGI)
     RAWINPUT_DeviceContext *ctx = joystick->hwdata;
-    
+
     if (ctx->wgi_correlated) {
         WindowsGamingInputGamepadState *gamepad_state = ctx->wgi_slot;
         HRESULT hr;
@@ -1823,7 +1823,7 @@ RAWINPUT_UnregisterNotifications()
         return;
     }
 }
-    
+
 LRESULT CALLBACK
 RAWINPUT_WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
